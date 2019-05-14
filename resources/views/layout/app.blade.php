@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html class="ls-theme-green">
     <head>
-        <title>Página com a estrutura inicial</title>
+        <title>@yield('titulo')</title>
 
         <meta charset="utf-8">
         <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="description" content="Insira aqui a descrição da página.">
-        <link href="http://assets.locaweb.com.br/locastyle/3.10.1/stylesheets/locastyle.css" rel="stylesheet" type="text/css">
+
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <!-- Styles -->
+        <link href="/css/app.css" rel="stylesheet">
         <link rel="icon" sizes="192x192" href="/locawebstyle/assets/images/ico-boilerplate.png">
         <link rel="apple-touch-icon" href="/locawebstyle/assets/images/ico-boilerplate.png">
+
+        <!-- Scripts -->
+        <script>
+            window.Laravel = {!! json_encode([
+                    'csrfToken' => csrf_token(),
+            ]) !!}
+            ;
+        </script>
+        
     </head>
     <body>
         <div class="ls-topbar ">
@@ -21,7 +35,7 @@
                 <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
                     <a href="#" class="ls-ico-user">
                         <img src="/locawebstyle/assets/images/locastyle/avatar-example.jpg" alt="" />
-                        <span class="ls-name">João Kennedy</span>
+                        <span class="ls-name">{{Auth::user()->name}}</span>
                         (johnkennedy)
                     </a>
 
@@ -75,8 +89,7 @@
             </div>
         </main>
 
-        <!-- We recommended use jQuery 1.10 or up -->
-        <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script src="http://assets.locaweb.com.br/locastyle/3.10.1/javascripts/locastyle.js" type="text/javascript"></script>
+        <!-- Scripts -->
+        <script src="/js/app.js"></script>
     </body>
 </html>
